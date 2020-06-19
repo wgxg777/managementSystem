@@ -18,11 +18,14 @@
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.3",
     "vue-schart": "^2.0.0",
-    "vuedraggable": "^2.17.0"
+    "vuedraggable": "^2.17.0",
+    "vuex": "^3.3.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",
     "@vue/cli-service": "^3.9.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.10"
   }
 }

@@ -60,8 +60,8 @@ export default {
             return path === this.$route.fullPath;
         },
         tabClick(e){
-            console.log()
-            if(this.$route.path !== e.name){
+            console.log(this.$route.fullPath  , e.name)
+            if(this.$route.fullPath !== e.name){
                this.$router.push(e.name)
             }
            

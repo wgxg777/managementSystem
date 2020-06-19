@@ -48,6 +48,9 @@ export default {
         return {
             tableData:[]
         }
+    },
+    mounted(){
+        console.log(this.$i18n)
     }
 }
 </script>
