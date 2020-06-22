@@ -8,9 +8,9 @@
             text-color="#bfcbd9"
             active-text-color="#20a0ff"
             unique-opened
-            router
+            @select="onselect"
         >
-        <sidebar-item v-for="menu in items" :key="menu.index" :item="menu" />
+            <sidebar-item v-for="menu in items" :key="menu.index" :item="menu" />
             <!-- <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
@@ -45,14 +45,14 @@
                         <span slot="title">{{ item.title }}</span>
                     </el-menu-item>
                 </template>
-            </template> -->
+            </template>-->
         </el-menu>
     </div>
 </template>
 
 <script>
 import bus from '../common/bus';
-import sidebarItem from './sidebarItem'
+import sidebarItem from './sidebarItem';
 export default {
     data() {
         return {
@@ -62,29 +62,29 @@ export default {
                     icon: 'el-icon-lx-home',
                     index: 'dashboard',
                     title: '系统首页',
-                    children:[]
+                    children: []
                 },
                 {
                     icon: 'el-icon-lx-cascades',
                     index: 'table',
                     title: '基础表格',
-                    children:[]
+                    children: []
                 },
                 {
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',
                     title: 'tab选项卡',
-                    children:[]
+                    children: []
                 },
                 {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
                     title: '表单相关',
                     children: [
-                        {   
+                        {
                             index: 'form',
                             title: '基本表单',
-                            children:[]
+                            children: []
                         },
                         {
                             index: '3-2',
@@ -93,19 +93,19 @@ export default {
                                 {
                                     index: 'editor',
                                     title: '富文本编辑器',
-                                    children:[]
+                                    children: []
                                 },
                                 {
                                     index: 'markdown',
                                     title: 'markdown编辑器',
-                                    children:[]
+                                    children: []
                                 }
                             ]
                         },
                         {
                             index: 'upload',
                             title: '文件上传',
-                            children:[]
+                            children: []
                         }
                     ]
                 },
@@ -113,13 +113,13 @@ export default {
                     icon: 'el-icon-lx-emoji',
                     index: 'icon',
                     title: '自定义图标',
-                    children:[]
+                    children: []
                 },
                 {
                     icon: 'el-icon-pie-chart',
                     index: 'charts',
                     title: 'schart图表',
-                    children:[]
+                    children: []
                 },
                 {
                     icon: 'el-icon-rank',
@@ -129,12 +129,12 @@ export default {
                         {
                             index: 'drag',
                             title: '拖拽列表',
-                            children:[]
+                            children: []
                         },
                         {
                             index: 'dialog',
                             title: '拖拽弹框',
-                            children:[]
+                            children: []
                         }
                     ]
                 },
@@ -142,7 +142,7 @@ export default {
                     icon: 'el-icon-lx-global',
                     index: 'i18n',
                     title: '国际化功能',
-                    children:[]
+                    children: []
                 },
                 {
                     icon: 'el-icon-lx-warn',
@@ -152,30 +152,37 @@ export default {
                         {
                             index: 'permission',
                             title: '权限测试',
-                            children:[]
+                            children: []
                         },
                         {
                             index: '404',
                             title: '404页面',
-                            children:[]
+                            children: []
                         }
                     ]
                 },
                 {
                     icon: 'el-icon-lx-redpacket_fill',
-                    index: '/donate',
+                    index: 'donate',
                     title: '支持作者',
-                    children:[]
+                    children: []
                 }
-            ],
+            ]
         };
     },
+    methods: {
+        onselect(index, indexPath) {
+            console.log(`/${index}`)
+            if (this.$route.fullPath !== `/${index}`) {
+                this.$router.push({ path: `/${index}` });
+            }
+        }
+    },
     components: {
-        sidebarItem,
+        sidebarItem
     },
     computed: {
         onRoutes() {
-            
             return this.$route.path.replace('/', '');
         }
     },
@@ -218,5 +225,4 @@ export default {
 /deep/ .el-menu--collapse .el-submenu__icon-arrow {
     display: none;
 }
-
 </style>
