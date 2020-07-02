@@ -2,6 +2,8 @@
     <div class="wrapper">
         <v-head></v-head>
         <v-sidebar></v-sidebar>
+        <div class="hang-on-wall">   <ball></ball></div>
+     
         <div class="content-box" :class="{'content-collapse':collapse}">
             <v-tags></v-tags>
             <div class="content">
@@ -20,6 +22,7 @@
 import vHead from './Header.vue';
 import vSidebar from './Sidebar.vue';
 import vTags from './Tags.vue';
+import ball from '../toy/Ball';
 import bus from './bus';
 export default {
     data() {
@@ -34,7 +37,8 @@ export default {
     components: {
         vHead,
         vSidebar,
-        vTags
+        vTags,
+        ball
     },
     created() {
         bus.$on('collapse-content', msg => {
@@ -52,3 +56,14 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.hang-on-wall{
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+    width: 300px;
+    height: 300px;
+    z-index: 9999;
+}
+</style>

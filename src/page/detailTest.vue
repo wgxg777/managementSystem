@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
+import { fetchData } from '@/api/index';
 import { mapState } from 'vuex';
 export default {
     computed: mapState({
