@@ -16,7 +16,7 @@ export default {
     data() {
         return {
             usingRate: 61
-        };
+        }
     }
 };
 </script>
