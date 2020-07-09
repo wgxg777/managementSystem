@@ -10,6 +10,7 @@
 import { fetchData } from '@/api/index';
 import { mapState } from 'vuex';
 export default {
+    name:'test',
     computed: mapState({
         count: state => state.count,
         childText2:state => state.childText2,
@@ -30,6 +31,7 @@ export default {
     },
     created() {
         this.getData();
+        console.log(this.$route)
     }
 };
 </script>

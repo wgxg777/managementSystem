@@ -7,6 +7,7 @@
                 </el-breadcrumb-item>
             </el-breadcrumb>
         </div>
+        <el-button type="text" icon="el-icon-edit" @click="visibleDialog = true">编辑</el-button>
         <div class="container">
             <div class="handle-box">
                 <el-button
@@ -68,10 +69,9 @@
                             class="red"
                             @click="handleDelete(scope.$index, scope.row)"
                         >删除</el-button>
-                         <el-button
+                        <el-button
                             type="text"
                             icon="el-icon-delete"
-                          
                             @click="handleDetail(scope.$index, scope.row)"
                         >详情</el-button>
                     </template>
@@ -89,6 +89,7 @@
             </div>
         </div>
 
+        <dalog :visible.sync="visibleDialog" title="测试弹框" @opened="$_handleOpened">哈哈哈</dalog>
         <!-- 编辑弹出框 -->
         <el-dialog title="编辑" :visible.sync="editVisible" width="30%">
             <el-form ref="form" :model="form" label-width="70px">
@@ -109,10 +110,12 @@
 
 <script>
 import { fetchData } from '@/api/index';
+import dalog from '@/components/toy/dalog';
 export default {
     name: 'basetable',
     data() {
         return {
+            visibleDialog: false,
             query: {
                 address: '',
                 name: '',
@@ -129,10 +132,16 @@ export default {
             id: -1
         };
     },
+    components: {
+        dalog
+    },
     created() {
         this.getData();
     },
     methods: {
+        $_handleOpened() {
+            console.log(1111);
+        },
         // 获取 easy-mock 的模拟数据
         getData() {
             fetchData(this.query).then(res => {
@@ -158,9 +167,8 @@ export default {
                 })
                 .catch(() => {});
         },
-        handleDetail(index, row){
-        
-            this.$router.push({path: `/detailTest?index=${index}`});
+        handleDetail(index, row) {
+            this.$router.push({ path: `/detailTest?index=${index}` });
         },
         // 多选操作
         handleSelectionChange(val) {
