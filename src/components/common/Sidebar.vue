@@ -172,7 +172,7 @@ export default {
     },
     methods: {
         onselect(index, indexPath) {
-            console.log(`/${index}`)
+            console.log(`/${index}`);
             if (this.$route.fullPath !== `/${index}`) {
                 this.$router.push({ path: `/${index}` });
             }
@@ -224,5 +224,11 @@ export default {
 
 /deep/ .el-menu--collapse .el-submenu__icon-arrow {
     display: none;
+}
+/deep/ .is-active > .el-submenu__title {
+    color: rgb(32, 160, 255) !important;
+}
+/deep/ .is-active > .el-submenu__title .el-icon-lx-calendar {
+    color: rgb(32, 160, 255) !important;
 }
 </style>

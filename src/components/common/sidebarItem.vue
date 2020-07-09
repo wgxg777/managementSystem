@@ -7,7 +7,7 @@
             </el-menu-item>
         </template>
 
-        <el-submenu v-else :index="item.index">
+        <el-submenu v-else :index="item.index" popper-append-to-body>
             <template slot="title">
                 <i :class="item.icon"></i>
                 <span slot="title">{{ item.title }}</span>
@@ -51,4 +51,11 @@ export default {
 .el-menu--collapse .el-submenu__icon-arrow {
     display: none;
 }
+ /deep/ .is-active>.el-submenu__title {
+      color: rgb(32, 160, 255) !important;
+    }
+    /deep/ .is-active>.el-submenu__title .el-icon-lx-calendar{
+         color: rgb(32, 160, 255) !important;
+    }
+    
 </style>
