@@ -24,6 +24,7 @@ export default new Router({
                     component: () => import(/* webpackChunkName: "icon" */ '../page/Icon.vue'),
                     meta: { title: '自定义图标' }
                 },
+                
                 {
                     path: '/table',
                     component: () => import(/* webpackChunkName: "table" */ '../page/BaseTable.vue'),

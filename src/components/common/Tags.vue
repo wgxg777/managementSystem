@@ -52,7 +52,7 @@ export default {
     data() {
         return {
             tagsList: [],
-            activePath:'/table'
+            activePath:'/table',
         };
     },
     methods: {
@@ -96,6 +96,7 @@ export default {
         },
         // 设置标签
         setTags(route) {
+            console.log(route)
             this.activePath = route.fullPath
             const isExist = this.tagsList.some(item => {
                 return item.path === route.fullPath;
@@ -104,6 +105,7 @@ export default {
                 // if (this.tagsList.length >= 8) {
                 //     this.tagsList.splice(1,1);
                 // }
+              
 
                 this.tagsList.push({
                     title: route.meta.title,
@@ -128,7 +130,7 @@ export default {
         },
         handleTags(command) {
             command === 'other' ? this.closeOther() : this.closeAll();
-        }
+        },
     },
     computed: {
         showTags() {

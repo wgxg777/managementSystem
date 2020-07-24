@@ -57,117 +57,7 @@ export default {
     data() {
         return {
             collapse: false,
-            items: [
-                {
-                    icon: 'el-icon-lx-home',
-                    index: 'dashboard',
-                    title: '系统首页',
-                    children: []
-                },
-                {
-                    icon: 'el-icon-lx-cascades',
-                    index: 'table',
-                    title: '基础表格',
-                    children: []
-                },
-                {
-                    icon: 'el-icon-lx-copy',
-                    index: 'tabs',
-                    title: 'tab选项卡',
-                    children: []
-                },
-                {
-                    icon: 'el-icon-lx-calendar',
-                    index: '3',
-                    title: '表单相关',
-                    children: [
-                        {
-                            index: 'form',
-                            title: '基本表单',
-                            children: []
-                        },
-                        {
-                            index: '3-2',
-                            title: '三级菜单',
-                            children: [
-                                {
-                                    index: 'editor',
-                                    title: '富文本编辑器',
-                                    children: []
-                                },
-                                {
-                                    index: 'markdown',
-                                    title: 'markdown编辑器',
-                                    children: []
-                                }
-                            ]
-                        },
-                        {
-                            index: 'upload',
-                            title: '文件上传',
-                            children: []
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-emoji',
-                    index: 'icon',
-                    title: '自定义图标',
-                    children: []
-                },
-                {
-                    icon: 'el-icon-pie-chart',
-                    index: 'charts',
-                    title: 'schart图表',
-                    children: []
-                },
-                {
-                    icon: 'el-icon-rank',
-                    index: '6',
-                    title: '拖拽组件',
-                    children: [
-                        {
-                            index: 'drag',
-                            title: '拖拽列表',
-                            children: []
-                        },
-                        {
-                            index: 'dialog',
-                            title: '拖拽弹框',
-                            children: []
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-global',
-                    index: 'i18n',
-                    title: '国际化功能',
-                    children: []
-                },
-                {
-                    icon: 'el-icon-lx-warn',
-                    index: '7',
-                    title: '错误处理',
-                    children: [
-                        {
-                            index: 'permission',
-                            title: '权限测试',
-                            children: []
-                        },
-                        {
-                            index: '404',
-                            title: '404页面',
-                            children: []
-                        }
-                    ]
-                },
-                {
-                    icon: 'el-icon-lx-redpacket_fill',
-                    index: 'donate',
-                    title: '支持作者',
-                    children: []
-                }
-            ]
+          items:this.$store.state.sidebar
         };
     },
     methods: {
@@ -176,6 +66,7 @@ export default {
             if (this.$route.fullPath !== `/${index}`) {
                 this.$router.push({ path: `/${index}` });
             }
+            bus.$emit('tableDate', this.items)
         }
     },
     components: {
