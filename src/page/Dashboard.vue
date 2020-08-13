@@ -10,6 +10,7 @@
                             <div>{{role}}</div>
                         </div>
                     </div>
+                  
                     <div class="user-info-list">
                         上次登录时间：
                         <span>2019-11-01</span>
@@ -112,10 +113,12 @@
 <script>
 import Schart from 'vue-schart';
 import bus from '../components/common/bus';
+import silder from '../components/toy/silder';
 export default {
     name: 'dashboard',
     data() {
         return {
+            value1:0,
             name: localStorage.getItem('ms_username'),
             todoList: [
                 {
@@ -219,7 +222,8 @@ export default {
         };
     },
     components: {
-        Schart
+        Schart,
+        silder
     },
     computed: {
         role() {
@@ -372,5 +376,8 @@ export default {
 .schart {
     width: 100%;
     height: 300px;
+}
+.el-slider__bar{
+    height: ;
 }
 </style>
