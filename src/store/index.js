@@ -36,7 +36,7 @@ const state = {
                 {
                     index: 'form',
                     title: '基本表单',
-                    notshow: true
+                    // notshow: true
                 },
                 {
                     index: '3-2',

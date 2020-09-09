@@ -5,5 +5,12 @@ export const fetchData = query => {
         url: './table.json',
         method: 'get',
         params: query
-    });
-};
+    })
+}
+export const belle = query => {
+    return request({
+        url: './test.json',
+        method: 'get',
+        params: query
+    })
+}
