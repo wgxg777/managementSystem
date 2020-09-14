@@ -88,6 +88,12 @@ export default new Router({
                     meta: { title: '国际化' }
                 },
                 {
+                    // 代码输入
+                    path: '/test',
+                    component: () => import(/* webpackChunkName: "i18n" */ '../page/test.vue'),
+                    meta: { title: 'test' }
+                },
+                {
                     // 权限页面
                     path: '/permission',
                     component: () => import(/* webpackChunkName: "permission" */ '../page/Permission.vue'),
@@ -107,7 +113,13 @@ export default new Router({
                     path: '/donate',
                     component: () => import(/* webpackChunkName: "donate" */ '../page/Donate.vue'),
                     meta: { title: '支持作者' }
-                }
+                },
+                {
+                    // 代码输入
+                    path: '/map',
+                    component: () => import(/* webpackChunkName: "i18n" */ '../page/map.vue'),
+                    meta: { title: 'map' }
+                },
             ]
         },
         {

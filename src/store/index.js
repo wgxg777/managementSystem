@@ -31,7 +31,7 @@ const state = {
             icon: 'el-icon-lx-calendar',
             index: '3',
             title: '表单相关',
-            
+
             children: [
                 {
                     index: 'form',
@@ -114,12 +114,22 @@ const state = {
             ]
         },
         {
+            // 测试
+            icon: 'el-icon-lx-redpacket_fill',
+            index: 'test',
+            title: '代码输入',
+        },
+        {
             icon: 'el-icon-lx-redpacket_fill',
             index: 'donate',
             title: '支持作者',
-            
-
-        }
+        },
+        {
+            // 代码输入
+            icon: 'el-icon-lx-redpacket_fill',
+            index: 'map',
+            title: '地图',
+        },
     ]
 }
 
