@@ -14,3 +14,11 @@ export const belle = query => {
         params: query
     })
 }
+
+export const carList = query => {
+    return request({
+        url: './car.json',
+        method: 'get',
+        params: query
+    })
+}

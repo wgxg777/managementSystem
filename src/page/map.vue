@@ -8,6 +8,7 @@
 
 <script>
 import icar from './map_vehicle_normal.png';
+import { carList } from '@/api/index';
 export default {
     data() {
         return {
@@ -34,62 +35,77 @@ export default {
             ],
             map: {},
             markers: [],
+            cluster: [],
             polyline: {},
             mark: {},
             navgtrSpeed: 1,
             navgtr: {},
             pathSimplifierIns: {},
-            infoWindow:null
+            infoWindow: null,
+            carlist: []
         };
     },
     mounted() {
-        this.init();
-     
+        carList().then((res) => {
+            this.carlist = res;
+            this.init();
+        });
     },
     methods: {
         init() {
             this.map = new AMap.Map('container', {
                 resizeEnable: true,
-                center: [116.478935, 39.997761],
-                zoom: 17
+                center: [106.650988, 29.52752],
+                zoom: 10
             });
             let that = this;
-            for (var i = 0; i < this.markerd.length; i++) {
-                var point = this.markerd[i];
+            console.log(this.carlist.length);
+            for (var i = 0; i < this.carlist.length; i++) {
+                var point = this.carlist[i];
                 var marker = new AMap.Marker({
-                    position: point,
-                    map: this.map
+                    position: [point.Longitude, point.Latitude],
+
+                    label: {
+                        content: point.LicenseNum,
+                        offset:  new AMap.Pixel(-25, -25)
+                    }
                 });
-                marker.p = this.markerd[i];
-               
+                marker.nmu = this.carlist[i].LicenseNum;
                 // 将创建的点标记添加到已有的地图实例：
-                marker.on('click', function (p) {
-                    var content = '666';
+                marker.on('click', function (e) {
+                    console.log(e.target.nmu);
+                    var content = e.target.nmu;
                     that.infoWindow = new AMap.InfoWindow({
-                        content:content
+                        content: content
                     });
                     // 设置信息框内容
                     //将marker放到指定坐标
-                    that.infoWindow.open(that.map, p.lnglat);
+                    that.infoWindow.open(that.map, e.lnglat);
                 });
+                this.markers.push(marker);
             }
+            this.cluster = new AMap.MarkerClusterer(this.map, this.markers, {
+                gridSize: 80,
+                maxZoom: 13,
+                averageCenter: true
+            });
         },
         showInfoM(e) {
             console.log(e.target.content.name);
-        },
-    //      openInfo() {
-    //     //构建信息窗体中显示的内容
-    //     var info = [];
-    //     info.push("<div><div><img style=\"float:left;\" src=\" https://webapi.amap.com/images/autonavi.png \"/></div> ");
-    //     info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>高德软件</b>");
-    //     info.push("电话 : 010-84107000   邮编 : 100102");
-    //     info.push("地址 :北京市朝阳区望京阜荣街10号首开广场4层</div></div>");
-    //     this.infoWindow = new AMap.InfoWindow({
-    //         content: info.join("<br/>")  //使用默认信息窗体框样式，显示信息内容
-    //     });
-    //     this.infoWindow.open(this.map, this.map.getCenter());
+        }
+        //      openInfo() {
+        //     //构建信息窗体中显示的内容
+        //     var info = [];
+        //     info.push("<div><div><img style=\"float:left;\" src=\" https://webapi.amap.com/images/autonavi.png \"/></div> ");
+        //     info.push("<div style=\"padding:0px 0px 0px 4px;\"><b>高德软件</b>");
+        //     info.push("电话 : 010-84107000   邮编 : 100102");
+        //     info.push("地址 :北京市朝阳区望京阜荣街10号首开广场4层</div></div>");
+        //     this.infoWindow = new AMap.InfoWindow({
+        //         content: info.join("<br/>")  //使用默认信息窗体框样式，显示信息内容
+        //     });
+        //     this.infoWindow.open(this.map, this.map.getCenter());
 
-    // }
+        // }
     }
 };
 </script>
