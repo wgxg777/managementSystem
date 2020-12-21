@@ -1,7 +1,7 @@
 <template>
     <div class="box">
-        <div id="container" style="width:100vw; height:calc(100vh - 120px);">
-            <div style="z-index:999;position: absolute; top: 10px; left: 20px;width:80%"></div>
+        <div id="container" style="width: 100vw; height: calc(100vh - 120px)">
+            <div style="z-index: 999; position: absolute; top: 10px; left: 20px; width: 80%"></div>
         </div>
     </div>
 </template>
@@ -48,6 +48,15 @@ export default {
     mounted() {
         carList().then((res) => {
             this.carlist = res;
+            res.forEach((element) => {
+                //gps转高德
+                AMap.convertFrom([element.Longitude, element.Latitude], 'gps', function (status, result) {
+                    if (result.info === 'ok') {
+                        element.Longitude = result.locations.lng; // Array.<LngLat>
+                        element.Latitude = result.locations.lat; // Array.<LngLat>
+                    }
+                });
+            });
             this.init();
         });
     },
@@ -67,20 +76,23 @@ export default {
 
                     label: {
                         content: point.LicenseNum,
-                        offset:  new AMap.Pixel(-25, -25)
+                        offset: new AMap.Pixel(-25, -25)
                     }
                 });
                 marker.nmu = this.carlist[i].LicenseNum;
+                marker.position = [point.Longitude, point.Latitude]
                 // 将创建的点标记添加到已有的地图实例：
                 marker.on('click', function (e) {
                     console.log(e.target.nmu);
+                      console.log(e.target.nmu);
                     var content = e.target.nmu;
                     that.infoWindow = new AMap.InfoWindow({
-                        content: content
+                        content: content,
+                        offset: new AMap.Pixel(0, -15)
                     });
                     // 设置信息框内容
                     //将marker放到指定坐标
-                    that.infoWindow.open(that.map, e.lnglat);
+                    that.infoWindow.open(that.map,e.target.position);
                 });
                 this.markers.push(marker);
             }
